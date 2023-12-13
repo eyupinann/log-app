@@ -19,20 +19,23 @@ const User = () => {
 
         async function fetchDataAndLog() {
             try {
-                // Fetch IP data
                 const ipResponse = await axios.get('https://api.ipify.org?format=json');
                 const ip = ipResponse.data.ip;
 
-                // Log data with IP
+                const today = new Date();
+                const month = today.getMonth()+1;
+                const year = today.getFullYear();
+                const date = today. getDate();
+                const currentDate = month + "/" + date + "/" + year + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
                 const logResponse = await axios.post('https://log-21hz.onrender.com/log', {
-                    timestamp: new Date().toISOString(),
+                    timestamp: currentDate,
                     userAgent: navigator.userAgent,
                     ip: ip
                 }, {withCredentials: false});
 
                 console.log('Check response:', logResponse);
             } catch (error) {
-                // Handle errors without displaying them on the page
                 console.error('Error:', error.message);
             }
         }
