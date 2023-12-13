@@ -16,5 +16,7 @@ const config: Config = {
     },
   },
   plugins: [],
+  purge: ['./src/**/*.{js,ts,jsx,tsx}', './public/index.html'],
+
 }
 export default config
